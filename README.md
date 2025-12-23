@@ -1,2 +1,257 @@
-# sensei.links.me
-sensei for real
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sensei FR - Links</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* צבעי מותג */
+            --kick-color: #53FC18;
+            --discord-color: #5865F2;
+            --youtube-color: #FF0000;
+            --insta-bg: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --bg-color: #050505;
+            --card-bg: #111;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* רקע דינמי שעוקב אחרי העכבר */
+        #dynamic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(
+                600px circle at var(--x, 50%) var(--y, 50%), 
+                rgba(var(--glow-color), 0.15),
+                transparent 40%
+            );
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 3rem 1rem;
+            text-align: center;
+            z-index: 1;
+        }
+
+        /* תמונת פרופיל עם אפקט זוהר */
+        .profile-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 2.5rem;
+        }
+
+        /* עיצוב הכפתורים */
+        .link-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* מרווח בין האייקון לטקסט */
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .link-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .icon {
+            font-size: 1.4rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        /* אנימציות וצבעים ספציפיים לכל כפתור */
+        
+        /* Discord */
+        .discord:hover {
+            background-color: rgba(88, 101, 242, 0.1);
+            border-color: var(--discord-color);
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.4);
+            transform: translateY(-3px) scale(1.02);
+        }
+        .discord .icon { color: var(--discord-color); }
+
+        /* Kick */
+        .kick:hover {
+            background-color: rgba(83, 252, 24, 0.1);
+            border-color: var(--kick-color);
+            box-shadow: 0 0 20px rgba(83, 252, 24, 0.4);
+            transform: translateY(-3px) scale(1.02);
+        }
+        .kick .icon { color: var(--kick-color); }
+
+        /* YouTube */
+        .youtube:hover {
+            background-color: rgba(255, 0, 0, 0.1);
+            border-color: var(--youtube-color);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+            transform: translateY(-3px) scale(1.02);
+        }
+        .youtube .icon { color: var(--youtube-color); }
+
+        /* Instagram */
+        .instagram {
+            position: relative;
+        }
+        .instagram:hover {
+            border-color: #d62976; /* ורוד של אינסטגרם */
+            box-shadow: 0 0 20px rgba(214, 41, 118, 0.4);
+            transform: translateY(-3px) scale(1.02);
+        }
+        /* רקע הדרגתי לאייקון של אינסטגרם */
+        .instagram .icon {
+            background: var(--insta-bg);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer {
+            margin-top: 3rem;
+            font-size: 12px;
+            color: #555;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="dynamic-bg"></div>
+
+    <div class="container">
+        
+        <div class="profile-wrapper">
+            <img src="https://images-ext-1.discordapp.net/external/GLN3fQYqUNhZYcB9CxbdUSYr73NsSaZ75TQWwIRXcQU/https/files.kick.com/images/user/5984097/profile_image/conversion/5b4558bc-9da7-4d2e-a8d7-a2b04b1edc61-fullsize.webp?format=webp" alt="Sensei FR" class="profile-img">
+        </div>
+        
+        <h1>SENSEI FR</h1>
+        <div class="subtitle">Official Links // קישורים רשמיים</div>
+
+        <a href="https://discord.com/invite/Eqx7858MVn" class="link-card discord" target="_blank">
+            <div class="link-content">
+                <i class="fab fa-discord icon"></i>
+                <span>הדיסקורד הרשמי</span>
+            </div>
+        </a>
+
+        <a href="https://kick.com/sensei_fr" class="link-card kick" target="_blank">
+            <div class="link-content">
+                <div class="icon" style="font-weight: 900; font-family: sans-serif;">K</div> <span>Kick - לייבים</span>
+            </div>
+        </a>
+
+        <a href="https://www.youtube.com/@senseifrfr" class="link-card youtube" target="_blank">
+            <div class="link-content">
+                <i class="fab fa-youtube icon"></i>
+                <span>הערוץ הרשמי</span>
+            </div>
+        </a>
+
+        <a href="https://www.instagram.com/yairfr12/" class="link-card instagram" target="_blank">
+            <div class="link-content">
+                <i class="fab fa-instagram icon"></i>
+                <span>עדכונים בסטורי</span>
+            </div>
+        </a>
+
+        <a href="https://www.youtube.com/@SenseiLIVE-n6f" class="link-card youtube" target="_blank">
+            <div class="link-content">
+                <i class="fab fa-youtube icon"></i>
+                <span>ערוץ הקליפים שלי</span>
+            </div>
+        </a>
+
+        <div class="footer">
+            © 2025 Sensei FR
+        </div>
+
+    </div>
+
+    <script>
+        const body = document.body;
+        
+        // פונקציה לשינוי המשתנים ב-CSS לפי תזוזת העכבר
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            
+            // עדכון המיקום של האלומה
+            body.style.setProperty('--x', `${x}px`);
+            body.style.setProperty('--y', `${y}px`);
+
+            // חישוב צבע דינמי לפי המיקום (נע בין צבעים שונים)
+            // מחשב ערך RGB שמשתנה לפי רוחב המסך
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            
+            // יצירת שינוי צבע עדין
+            const r = Math.round((x / width) * 255);
+            const g = Math.round((y / height) * 50); 
+            const b = Math.round(150 + (y / height) * 100);
+
+            // שולח את הצבע ל-CSS
+            body.style.setProperty('--glow-color', `${r}, ${g}, ${b}`);
+        });
+    </script>
+</body>
+</html>
