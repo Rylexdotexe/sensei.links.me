@@ -59,6 +59,10 @@ body {
             padding: 3rem 1rem;
             text-align: center;
             z-index: 1;
+            <a href="game.html" class="next-arrow">
+    <i class="fas fa-chevron-down"></i>
+</a>
+
         }
 
         /* תמונת פרופיל עם אפקט זוהר */
@@ -285,6 +289,26 @@ body {
             // שולח את הצבע ל-CSS
             body.style.setProperty('--glow-color', `${r}, ${g}, ${b}`);
         });
+
+        .next-arrow {
+    margin-top: 3rem;
+    font-size: 26px;
+    color: #aaa;
+    animation: float 1.6s ease-in-out infinite;
+    transition: all 0.3s ease;
+}
+
+.next-arrow:hover {
+    color: #fff;
+    transform: scale(1.2);
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+    100% { transform: translateY(0); }
+}
+
     </script>
 </body>
 </html>
